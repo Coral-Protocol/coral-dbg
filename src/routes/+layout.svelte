@@ -7,7 +7,8 @@
 	let { children } = $props();
 
 	let socket = $state({
-		session: null
+		session: null,
+		registry: null
 	});
 	socketCtx.set(socket);
 </script>

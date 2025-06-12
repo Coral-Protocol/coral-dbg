@@ -5,35 +5,129 @@
 	import * as Sidebar from '$lib/components/ui/sidebar';
 	import * as Select from '$lib/components/ui/select';
 	import * as Dialog from '$lib/components/ui/dialog';
-	import { socketCtx } from '$lib/threads';
+	import * as DropdownMenu from '$lib/components/ui/dropdown-menu';
+	import { socketCtx, type Agent } from '$lib/threads';
 	import ChevronRightIcon from '@lucide/svelte/icons/chevron-right';
-	import { Plus } from '@lucide/svelte';
+	import { ChevronDown, Plus, PlusIcon, RefreshCw } from '@lucide/svelte';
 	import { Button } from '$lib/components/ui/button';
 	import { Input } from '$lib/components/ui/input';
 	import { Label } from '$lib/components/ui/label';
 	import Badge from './ui/badge/badge.svelte';
 	import { cn } from '$lib/utils';
+	import CreateSession from './create-session.svelte';
+	import { PersistedState, useDebounce } from 'runed';
 
 	let ctx = socketCtx.get();
 	let conn = $derived(ctx.session);
 
 	let threadName = $state('');
 	let participants: string[] = $state([]);
+
+	let host = new PersistedState('host', '127.0.0.1:5555');
+	let appId = new PersistedState('appId', 'appId');
+	let privKey = new PersistedState('privKey', 'privKey');
+
+	let connecting = $state(false);
+	let error: string | null = $state(null);
+
+	let createSessionOpen = $state(false);
+
+	const refreshAgents = async () => {
+		try {
+			connecting = true;
+			error = null;
+			ctx.registry = null;
+			const agents = (await fetch(`http://${host.current}/api/v1/registry`).then((res) =>
+				res.json()
+			)) as Agent[];
+			ctx.registry = Object.fromEntries(agents.map((agent) => [agent.id, agent]));
+
+			const sessions = (await fetch(`http://${host.current}/api/v1/sessions`).then((res) =>
+				res.json()
+			)) as string[];
+			ctx.sessions = sessions;
+
+			connecting = false;
+		} catch (e) {
+			connecting = false;
+			ctx.registry = null;
+			error = 'Error';
+		}
+	};
+
+	const debouncedRefresh = useDebounce(() => refreshAgents(), 400);
+	const inputRefresh = () => {
+		connecting = true;
+		debouncedRefresh();
+	};
 </script>
+
+<CreateSession bind:open={createSessionOpen} agents={[]} />
 
 <Sidebar.Root>
 	<Sidebar.Header>
-		<Sidebar.Menu>
-			<Sidebar.MenuItem>
-				<Sidebar.MenuButton class="data-[slot=sidebar-menu-button]:!p-1.5">
-					{#snippet child({ props })}
-						<a href="/" {...props}>
-							<span class="text-base font-semibold">coral-dbg</span>
-						</a>
-					{/snippet}
-				</Sidebar.MenuButton>
-			</Sidebar.MenuItem>
-		</Sidebar.Menu>
+		<Sidebar.Group>
+			<Sidebar.GroupLabel class="text-sidebar-foreground flex flex-row gap-1 pr-0 text-sm">
+				<span>Connection</span>
+				<span
+					class={cn(
+						'text-muted-foreground flex-grow text-right text-sm font-normal',
+						error && 'text-destructive'
+					)}
+				>
+					{#if error}
+						{error}
+					{:else if ctx.registry}
+						{Object.keys(ctx.registry).length} agents
+					{/if}
+				</span>
+				<Button
+					size="icon"
+					variant="outline"
+					class="size-7"
+					disabled={connecting}
+					onclick={() => refreshAgents()}
+				>
+					<RefreshCw class={cn('size-3', connecting && 'animate-spin')} />
+				</Button>
+			</Sidebar.GroupLabel>
+			<Sidebar.GroupContent>
+				<Sidebar.Menu>
+					<Input placeholder="host" bind:value={host.current} oninput={inputRefresh} />
+					<div class="flex flex-row gap-1">
+						<Input placeholder="app id" bind:value={appId.current} oninput={inputRefresh} />
+						<Input placeholder="privacy key" bind:value={privKey.current} oninput={inputRefresh} />
+					</div>
+					<DropdownMenu.Root>
+						<DropdownMenu.Trigger>
+							{#snippet child({ props })}
+								<Sidebar.MenuButton {...props}>
+									Select Session
+									<ChevronDown class="ml-auto" />
+								</Sidebar.MenuButton>
+							{/snippet}
+						</DropdownMenu.Trigger>
+						<DropdownMenu.Content class="w-(--bits-dropdown-menu-anchor-width)">
+							{#if ctx.sessions && ctx.sessions.length > 0}
+								{#each ctx.sessions as session}
+									<DropdownMenu.Item>
+										<span>{session}</span>
+									</DropdownMenu.Item>
+								{/each}
+								<DropdownMenu.Separator />
+							{/if}
+							<DropdownMenu.Item
+								onclick={() => {
+									createSessionOpen = true;
+								}}
+							>
+								<span>New session</span>
+							</DropdownMenu.Item>
+						</DropdownMenu.Content>
+					</DropdownMenu.Root>
+				</Sidebar.Menu>
+			</Sidebar.GroupContent>
+		</Sidebar.Group>
 	</Sidebar.Header>
 	<Sidebar.Content class="gap-0">
 		<Sidebar.Group>

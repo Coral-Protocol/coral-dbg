@@ -228,19 +228,26 @@
     "@eslint/core" "^0.14.0"
     levn "^0.4.1"
 
-"@floating-ui/core@^1.6.4", "@floating-ui/core@^1.7.0":
+"@floating-ui/core@^1.7.0":
   version "1.7.0"
   resolved "https://registry.yarnpkg.com/@floating-ui/core/-/core-1.7.0.tgz#1aff27a993ea1b254a586318c29c3b16ea0f4d0a"
   integrity sha512-FRdBLykrPPA6P76GGGqlex/e7fbe0F1ykgxHYNXQsH/iTEtjMj/f9bpY5oQqbjt5VgZvgz/uKXbGuROijh3VLA==
   dependencies:
     "@floating-ui/utils" "^0.2.9"
 
-"@floating-ui/dom@^1.6.7":
-  version "1.7.0"
-  resolved "https://registry.yarnpkg.com/@floating-ui/dom/-/dom-1.7.0.tgz#f9f83ee4fee78ac23ad9e65b128fc11a27857532"
-  integrity sha512-lGTor4VlXcesUMh1cupTUTDoCxMb0V6bm3CnxHzQcw8Eaf1jQbgQX4i02fYgT0vJ82tb5MZ4CZk1LRGkktJCzg==
+"@floating-ui/core@^1.7.1":
+  version "1.7.1"
+  resolved "https://registry.yarnpkg.com/@floating-ui/core/-/core-1.7.1.tgz#1abc6b157d4a936174f9dbd078278c3a81c8bc6b"
+  integrity sha512-azI0DrjMMfIug/ExbBaeDVJXcY0a7EPvPjb2xAJPa4HeimBX+Z18HK8QQR3jb6356SnDDdxx+hinMLcJEDdOjw==
   dependencies:
-    "@floating-ui/core" "^1.7.0"
+    "@floating-ui/utils" "^0.2.9"
+
+"@floating-ui/dom@^1.7.0":
+  version "1.7.1"
+  resolved "https://registry.yarnpkg.com/@floating-ui/dom/-/dom-1.7.1.tgz#76a4e3cbf7a08edf40c34711cf64e0cc8053d912"
+  integrity sha512-cwsmW/zyw5ltYTUeeYJ60CnQuPqmGwuGVhG9w0PRaRKkAyi38BT5CKrpIbb+jtahSwUl04cWzSx9ZOIxeS6RsQ==
+  dependencies:
+    "@floating-ui/core" "^1.7.1"
     "@floating-ui/utils" "^0.2.9"
 
 "@floating-ui/utils@^0.2.9":
@@ -276,10 +283,10 @@
   resolved "https://registry.yarnpkg.com/@humanwhocodes/retry/-/retry-0.4.3.tgz#c2b9d2e374ee62c586d3adbea87199b1d7a7a6ba"
   integrity sha512-bV0Tgo9K4hfPCek+aMAn81RppFKv2ySDQeMoSZuvTASywNTnVJCArCZE2FWqpvIatKu7VMRLWlR1EazvVhDyhQ==
 
-"@internationalized/date@^3.5.6":
-  version "3.8.1"
-  resolved "https://registry.yarnpkg.com/@internationalized/date/-/date-3.8.1.tgz#fb3709440060a9efa0722615e83550e682e83221"
-  integrity sha512-PgVE6B6eIZtzf9Gu5HvJxRK3ufUFz9DhspELuhW/N0GuMGMTLvPQNRkHP2hTuP9lblOk+f+1xi96sPiPXANXAA==
+"@internationalized/date@^3.8.1":
+  version "3.8.2"
+  resolved "https://registry.yarnpkg.com/@internationalized/date/-/date-3.8.2.tgz#977620c1407cc6830fd44cb505679d23c599e119"
+  integrity sha512-/wENk7CbvLbkUvX1tu0mwq49CVkkWpkXubGel6birjRPyo6uQ4nQpnq5xZu823zRCwwn82zgHrvgF1vZyvmVgA==
   dependencies:
     "@swc/helpers" "^0.5.0"
 
@@ -322,10 +329,10 @@
     "@jridgewell/resolve-uri" "^3.1.0"
     "@jridgewell/sourcemap-codec" "^1.4.14"
 
-"@lucide/svelte@^0.482.0":
-  version "0.482.0"
-  resolved "https://registry.yarnpkg.com/@lucide/svelte/-/svelte-0.482.0.tgz#5e8abe1777d0d91ebf47359a1b39115739cac2b4"
-  integrity sha512-n2ycHU9cNcleRDwwpEHBJ6pYzVhHIaL3a+9dQa8kns9hB2g05bY+v2p2KP8v0pZwtNhYTHk/F2o2uZ1bVtQGhw==
+"@lucide/svelte@^0.513.0":
+  version "0.513.0"
+  resolved "https://registry.yarnpkg.com/@lucide/svelte/-/svelte-0.513.0.tgz#e097021c3d8eec84bd3b95791c6d39b7f4135441"
+  integrity sha512-XwBQMQkMlr9qp9yVg+epx5MzhBBrqul8atO00y/ZfhlKRJuQZVmq3ELibApqyBtj9ys0Ai4FH/SZcODTUFYXig==
 
 "@napi-rs/wasm-runtime@^0.2.9":
   version "0.2.10"
@@ -826,18 +833,17 @@ balanced-match@^1.0.0:
   resolved "https://registry.yarnpkg.com/balanced-match/-/balanced-match-1.0.2.tgz#e83e3a7e3f300b34cb9d87f615fa0cbf357690ee"
   integrity sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==
 
-bits-ui@^1.5.0:
-  version "1.7.0"
-  resolved "https://registry.yarnpkg.com/bits-ui/-/bits-ui-1.7.0.tgz#6223924e2123817fe5ced4a74413db22bd18c9b3"
-  integrity sha512-F8H2mr3Rd4S11lnQ0WU8oscISjXNuLlIWRZBhvW9so/cVEFFi8+cLPQBV/kU8nwznWu0C8z10fooc9BTToepfw==
+bits-ui@^2.5.0:
+  version "2.6.0"
+  resolved "https://registry.yarnpkg.com/bits-ui/-/bits-ui-2.6.0.tgz#702ae3c0bbe1858c449841a28043c1a668381922"
+  integrity sha512-vb0J2C7Jfh/ePnoRwPTVcnMl2JJFFmv3zv4Ssv/DU18WkB5xgIU9jEmfd3IcR7mTjIpFZgYfil1j4w6Fa+OoVw==
   dependencies:
-    "@floating-ui/core" "^1.6.4"
-    "@floating-ui/dom" "^1.6.7"
-    "@internationalized/date" "^3.5.6"
+    "@floating-ui/core" "^1.7.0"
+    "@floating-ui/dom" "^1.7.0"
     css.escape "^1.5.1"
     esm-env "^1.1.2"
-    runed "^0.23.2"
-    svelte-toolbelt "^0.7.1"
+    runed "^0.28.0"
+    svelte-toolbelt "^0.9.1"
     tabbable "^6.2.0"
 
 brace-expansion@^1.1.7:
@@ -1898,6 +1904,15 @@ svelte-toolbelt@^0.7.1:
   dependencies:
     clsx "^2.1.1"
     runed "^0.23.2"
+    style-to-object "^1.0.8"
+
+svelte-toolbelt@^0.9.1:
+  version "0.9.1"
+  resolved "https://registry.yarnpkg.com/svelte-toolbelt/-/svelte-toolbelt-0.9.1.tgz#e41727807d062ddee8a89b75d78051f72177b60a"
+  integrity sha512-wBX6MtYw/kpht80j5zLpxJyR9soLizXPIAIWEVd9llAi17SR44ZdG291bldjB7r/K5duC0opDFcuhk2cA1hb8g==
+  dependencies:
+    clsx "^2.1.1"
+    runed "^0.28.0"
     style-to-object "^1.0.8"
 
 svelte@^5.0.0:

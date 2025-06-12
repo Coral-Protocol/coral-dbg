@@ -18,11 +18,18 @@ export type Thread = {
 	isClosed: boolean;
 };
 
+export type AgentOption = {
+	name: string;
+	description?: string;
+} & ({ type: 'string'; default: string | null } | { type: 'number'; default: number | null });
+
 export type Agent = {
 	id: string;
-	description?: string;
+	options: { [name: string]: AgentOption };
 };
 
 export const socketCtx = new Context<{
 	session: Session | null;
+	registry: { [id: string]: Agent } | null;
+	sessions: string[] | null;
 }>('websocket');
