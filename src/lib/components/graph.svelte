@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { InternSet, hierarchy, pack, range, scaleOrdinal, schemeTableau10 } from 'd3';
-	import data from './../../ressieBois.json'
-	import type { GaiaResult } from '../../ressieBois';
+	import data from './../../gaia-data.json'
+	import type { GaiaResult } from '../../gaia-types';
 
 	interface Props {
 		selectedData: undefined | GaiaResult;
@@ -111,4 +111,3 @@
         font-weight: 700;
     }
 </style>
-

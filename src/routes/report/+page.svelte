@@ -1,7 +1,7 @@
 <script lang="ts">
   import Graph from '$lib/components/graph.svelte';
   import ThreadView from '$lib/components/thread-view.svelte'
-  import type { GaiaResult } from '../../ressieBois';
+  import type { GaiaResult } from '../../gaia-types';
   import type { Message as MessageType, Thread } from '$lib/threads';
   import Button, { type ButtonProps } from '$lib/components/ui/button/button.svelte';
 
@@ -35,7 +35,7 @@
 <main class="max-w-6xl mx-auto px-4 py-12 md:px-8">
   <header class="mb-12 text-center">
     <h1 class="text-4xl md:text-5xl font-bold tracking-tight mb-4">
-      Coral GAIA Report
+      GAIA Benchmark Report
     </h1>
     <p class="text-xl text-muted-foreground max-w-3xl mx-auto">
       Performance analysis and visualization of AI systems on the GAIA benchmark
